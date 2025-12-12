@@ -1,0 +1,99 @@
+COMPARISON OPERATORS IN JAVASCRIPT
+
+Two main equality operators:
+1. ==   → Loose Equality (Double Equals)   → Checks VALUE only (does type conversion)
+2. ===  → Strict Equality (Triple Equals) → Checks VALUE + TYPE both (no conversion)
+
+Rule of thumb (ALWAYS USE IN PROJECTS & INTERVIEWS):
+→ Use === (strict equality) 99% of the time
+→ Only use == if you exactly know why you need loose comparison
+
+How == (loose equality) works → It does IMPLICIT TYPE CONVERSION (Type Coercion)
+
+Important Conversion Rules JavaScript Follows Internally (for ==)
+
+1. When comparing Number and String
+   → String is converted to Number
+   Example:
+   5 == "5"          → true      (because "5" → 5)
+   5 === "5"         → false     (types different)
+
+2. When comparing Boolean and Number
+   → Boolean is converted to Number
+   true  → 1
+   false → 0
+   Example:
+   true == 1         → true
+   true === 1        → false
+
+3. When comparing Boolean and String
+   → First: String → Number
+   → Then:  Boolean → Number
+   Example:
+   true == "1"       → true      ("1" → 1, true → 1 → 1 == 1)
+   true === "1"      → false
+
+4. Special Cases (Very Important for Interviews)
+
+   null and undefined
+   null == undefined      → true
+   null === undefined     → false
+
+   Empty string and 0
+   "" == 0                → true      ("" → 0)
+   "" === 0               → false
+
+   false and empty string
+   false == ""            → true      (both become 0)
+   false === ""           → false
+
+   null and false
+   null == false          → false     (null is not converted to 0 here)
+   null === false         → false
+
+   undefined and 0
+   undefined == 0         → false
+   undefined === 0        → false
+
+   NaN with anything (even itself)
+   NaN == NaN             → false     (only value in JS not equal to itself!)
+
+   String numbers with leading zeros
+   "001" == 1             → true      ("001" → 1)
+   "010" == 10            → true      ("010" → 10)
+
+   0 and null
+   0 == null              → false
+
+Summary Table (Most Asked in Interviews)
+
+Expression         |  == (loose)  |  === (strict)  |  Reason
+-------------------|--------------|----------------|----------------
+5 == "5"           | true         | false          | string → number
+true == 1          | true         | false          | true → 1
+true == "1"        | true         | false          | "1" → 1, true → 1
+null == undefined  | true         | false          | special rule
+"" == 0            | true         | false          | "" → 0
+false == ""        | true         | false          | both → 0
+false == 0         | true         | false          | false → 0
+null == false      | false        | false          | no conversion
+NaN == NaN         | false        | false          | NaN is never equal
+"  " == 0          | false        | false          | space string ≠ 0 ("  " → 0 only if trimmed? No, actually "  " → 0 too! Wait:
+
+Wait → " " (string with space) == 0 → true in loose!
+   " " == 0           → true       (whitespace string → 0)
+   " " === 0          → false
+
+Final List of FALSY values (all become false/0 in loose comparison)
+→ false, 0, "", null, undefined, NaN
+
+Best Practice (Write this in your code forever):
+Always use === and !==
+Never use == and != (unless you have a very specific reason)
+
+Quick Tip to Remember:
+If you see == in code → think "type conversion happening"
+If you see === → think "safe, no surprises"
+
+You are now interview-ready on comparison operators! Save this note – it covers 95% of MCQs asked in JS interviews in India.
+Happy Coding!

@@ -1,0 +1,113 @@
+CLASS NOTES – JavaScript Data Types (Complete Summary)
+From the Latest Class – Super Important for Interviews & Clarity
+
+1. Memory Recap (Never Forget This)
+   - Hard Disk → Secondary Memory (slow, permanent)
+   - RAM       → Primary Memory (fast, temporary)
+   - Any program that runs (Chrome, VS Code, JavaScript) → lives inside RAM only
+   - When JavaScript runs → it automatically creates 2 partitions inside RAM:
+        1. Stack Memory  → for primitive data types
+        2. Heap Memory   → for non-primitive (objects, arrays – later)
+
+   From today, every program will be explained using Stack & Heap.
+
+2. How to Store Data in JavaScript (Variables)
+   Syntax:
+   let variableName = value;    // semicolon is must
+
+   Example:
+   let age = 23;
+   → Inside Stack: one small box is created → name = age → value = 23
+
+   To print:
+   console.log(age);            // 23
+   console.log(typeof age);     // "number"
+
+3. JavaScript is Loosely Typed (Dynamically Typed)
+   - You DO NOT write the type (unlike Java/C++)
+   - JavaScript itself decides the type based on the value you store
+   - Same variable can hold integer, decimal, string etc.
+
+   Java/C++ → Strongly Typed (you must write int, float, etc.)
+
+4. All 7 Primitive Data Types in JavaScript
+
+   1. number
+      - Used for BOTH integers and decimals (floating-point)
+      - Examples: 23, -50, 68.2, 5.9
+      - Special values that are also "number":
+         ∞     → Infinity
+         -∞    → -Infinity
+         NaN   → Not a Number (e.g., "hello"/2)
+      - Range: -(2⁵³ - 1) to (2⁵³ - 1)   ≈  ± 9,007,199,254,740,991
+      - If you cross this range → wrong value is stored
+
+   2. bigint
+      - For extremely large integers (beyond number range)
+      - How to create: add suffix n
+        let huge = 1234567890123456789012345n;
+      - Rules:
+         • Only for whole numbers (no decimal → 100.5n is invalid)
+         • Arithmetic allowed only between two bigints (bigint + number → error)
+         • Type → "bigint"
+
+   3. string
+      - Series of characters
+      - Written inside " " or ' ' or ` `
+      - Example:
+        let name = "Tap Academy";
+        typeof name → "string"
+
+   4. boolean
+      - Only two values: true or false
+      - Example:
+        let hasPassport = true;
+        let isPlaced    = false;
+        typeof hasPassport → "boolean"
+
+   5. undefined
+      - When you create a variable but don't assign any value
+      - Example:
+        let x;
+        console.log(x);        // undefined
+        console.log(typeof x); // "undefined"
+      - Value and type both are undefined
+
+   6. null
+      - Intentional absence of value (means "empty" or "nothing")
+      - We will learn in detail during Objects topic
+      - typeof null → "object" (historical bug in JS)
+
+   7. symbol (advanced – later)
+
+5. Quick Summary Table
+
+   Data Type     | Example Value               | typeof result   | Notes
+   --------------|-----------------------------|-----------------|----------------------
+   number        | 23, 5.9, Infinity, NaN      | "number"        | Integer + decimal
+   bigint        | 12345678901234567890n       | "bigint"        | For super large integers
+   string        | "Tap Academy", 'Rohit'      | "string"        |
+   boolean       | true, false                 | "boolean"       |
+   undefined     | let x; → x                  | "undefined"     | No value given
+   null          | null                        | "object"        | Empty by intention
+   symbol        | Symbol("id")                | "symbol"        | Unique identifiers
+
+6. Important typeof Examples
+   typeof 50              → "number"
+   typeof 50.5            → "number"
+   typeof "hello"         → "string"
+   typeof true            → "boolean"
+   typeof undefined       → "undefined"
+   typeof null            → "object"   (famous JS bug)
+   typeof 1234567890n     → "bigint"
+
+7. Key Takeaways (Must Remember Forever)
+   - JavaScript has only 7 primitive data types
+   - number covers both int and float
+   - Use bigint only when you need numbers bigger than ~9 quadrillion
+   - Variables are created using let (or const/var – later)
+   - JavaScript decides type automatically → Loosely Typed
+   - Stack memory stores all primitive values
+
+Thank you! Namaste
+Next Class → String in Depth + Stack vs Heap with Diagrams

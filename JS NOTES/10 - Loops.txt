@@ -1,0 +1,135 @@
+CLASS NOTES – LOOPS IN JAVASCRIPT (The Real Power of Programming)
+Topic: for, while, do-while Loops + Pattern Programming Foundation
+
+1. Why Loops Are MUST-KNOW
+   - Repeat a task 5 times, 100 times, 10,000 times → without copy-paste
+   - Used everywhere in real projects:
+        • Array/Object traversal
+        • DOM manipulation
+        • Event handling
+        • Animations
+        • Data processing
+        • Pattern programming (interview favorite)
+
+2. The Problem Without Loops
+   Want to print 5 stars (*****):
+   console.log("*");
+   console.log("*");
+   console.log("*");
+   console.log("*");
+   console.log("*");
+   → Works, but what if you need 500 stars? 50,000 stars? NOT PRACTICAL!
+
+   console.log always moves cursor to next line → prints one below the other
+
+3. The 3 Main Loops in JavaScript
+
+   A. for Loop → Use when you KNOW how many times to repeat
+      Syntax:
+      for (initialization; condition; increment/decrement) {
+          // body → code to repeat
+      }
+
+      Example: Print 1 to 10
+      for (let i = 1; i <= 10; i++) {
+          console.log("Star");
+      }
+
+      Flow:
+      1. Initialization → let i = 1 (runs only once)
+      2. Condition check → i <= 10 ?
+      3. If true → body executes
+      4. Increment → i++
+      5. Repeat from step 2
+
+   B. while Loop → Use when you DON’T know exact number of repetitions
+      Syntax:
+      initialization;
+      while (condition) {
+          // body
+          increment/decrement;
+      }
+
+      Example:
+      let i = 1;
+      while (i <= 10) {
+          console.log("Star");
+          i++;
+      }
+
+      Read as: "As long as condition is true → keep doing this"
+
+   C. do-while Loop → Runs body AT LEAST ONCE even if condition is false
+      Syntax:
+      initialization;
+      do {
+          // body (runs first)
+          increment/decrement;
+      } while (condition);
+
+      Example:
+      let i = 1;
+      do {
+          console.log("Star");
+          i++;
+      } while (i <= 10);
+
+      Special: Body runs first → then checks condition
+
+4. All Loops Have 4 Parts (Position may change)
+   1. Initialization   → let i = 1
+   2. Condition        → i <= 10
+   3. Body             → console.log("Star")
+   4. Increment/Decrement → i++
+
+5. Practical Example – Print 10 Stars (One Below Other)
+   // Using for loop
+   for (let i = 1; i <= 10; i++) {
+       console.log("*");
+   }
+
+   // Using while
+   let i = 1;
+   while (i <= 10) {
+       console.log("*");
+       i++;
+   }
+
+   // Using do-while
+   let i = 1;
+   do {
+       console.log("*");
+       i++;
+   } while (i <= 10);
+
+   Output:
+   *
+   *
+   *
+   ...
+   (10 times)
+
+6. Bonus Loops (Will Learn Later)
+   - for...of → Clean way to loop over arrays
+   - for...in → Used for objects
+
+7. Golden Rules
+   - Know number of repetitions → for loop
+   - Don’t know exact count → while loop
+   - Need at least one execution → do-while
+   - Pattern programming = Test of loop mastery
+   - Solve 200–250 loop questions → Your brain will automatically think in loops
+
+8. Next Step → Pattern Programming
+   Now we will print:
+   *****
+   *****
+   *****
+   *****
+   (Square, Triangle, Pyramid, Diamond, etc.)
+
+   This is where real loop power shows!
+
+Thank you! Namaste
+Next Class → Pattern Programming Mastery (Square, Triangle, Numbers, Alphabet Patterns)
+Get ready to become a Loop Master!

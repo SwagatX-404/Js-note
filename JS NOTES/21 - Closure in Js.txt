@@ -1,0 +1,123 @@
+JavaScript Closures - Complete Notes (by Rohit)
+===============================================
+
+What is a Closure?
+------------------
+A closure is when an inner function has access to variables from its outer (parent) function's scope — even after the outer function has finished executing.
+
+In simple words:
+→ Inner function "closes over" (remembers) the variables of its outer function
+→ Those variables stay alive in memory because of the closure
+
+Why is this possible?
+→ Because functions in JavaScript are first-class citizens
+→ A function can return another function
+→ When a function returns an inner function, the inner function keeps access to the outer function's variables (lexical scope)
+
+Example 1: Basic Closure
+-------------------------
+function outerFunction() {
+    let outerVariable = 10;
+
+    function innerFunction() {
+        console.log("Outer variable value is", outerVariable);
+    }
+
+    return innerFunction;
+}
+
+let exm = outerFunction();  // outerFunction finishes → should be deleted!
+exm();                       // But still prints 10 → How?!
+
+Explanation from Memory:
+1. outerFunction runs → creates outerVariable = 10
+2. innerFunction is returned → reference stored in exm
+3. outerFunction finishes → its execution context is deleted
+4. BUT outerVariable is NOT deleted!
+   Why? → Because innerFunction still needs it → forms a CLOSURE
+   → This memory area is called Lexical Scope (or Closure Scope)
+
+Output:
+Outer variable value is 10   → even after outerFunction is gone!
+
+Key Point:
+→ Outer function finishes first
+→ Inner function runs later but still remembers outerVariable
+→ This is the magic of closures
+
+Example 2: Counter using Closure (Most Important Real Example)
+---------------------------------------------------------------
+function createCounter() {
+    let count = 0;
+
+    return function() {
+        count += 1;
+        console.log("Count is", count);
+    };
+}
+
+let counterA = createCounter();
+counterA();  // Count is 1
+counterA();  // Count is 2
+counterA();  // Count is 3
+
+let counterB = createCounter();  // completely separate counter!
+counterB();  // Count is 1
+counterB();  // Count is 2
+
+→ counterA and counterB have their own private count variable
+→ Each call to createCounter() creates a new closure with its own count
+
+This is called Data Encapsulation / Private Variables using Closures
+
+Visual Understanding:
+createCounter() → returns a function + closes over its own "count"
+├── counterA → has its own count (starts at 0 → becomes 1,2,3...)
+└── counterB → has its own separate count (starts at 0 → 1,2...)
+
+Even though createCounter() finished long ago, count stays alive because of closure!
+
+Closure = Inner function + Lexical Environment (outer variables it remembers)
+
+Practical Uses of Closures
+--------------------------
+1. Data Hiding / Private Variables (Encapsulation)
+   → Like in the counter example
+
+2. Event Handlers (DOM)
+   → Button click handlers remember variables from when they were created
+
+3. Memorization / Caching
+   → Store previous results to make code faster
+
+4. Module Pattern
+   → Create private methods and variables
+
+5. Currying & Higher-Order Functions
+   → We'll cover later
+
+Closure vs Normal Scope
+-----------------------
+Normal scope: When function ends → all its variables die
+Closure: When function returns another function → variables stay alive if needed
+
+Without closures → counter example would always print 1
+With closures → it remembers and increments correctly
+
+Summary - Closure in 1 Line:
+"A function that remembers its outer variables even after the outer function has finished executing."
+
+MDN Definition (for interviews):
+"A closure is the combination of a function bundled together with references to its surrounding state (the lexical environment)."
+
+You have now mastered one of the hardest JavaScript concepts!
+Next topics that become easy after closures:
+→ Module Pattern
+→ Private methods in objects
+→ Factory functions
+→ Memorization
+
+================================================================
+End of Closure Notes
+Save as: javascript-closures-notes.txt
+Master this → You are now in top 10% of JS developers!

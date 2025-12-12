@@ -1,0 +1,117 @@
+JavaScript - Shallow Copy vs Deep Copy (Complete Notes from Lecture).txt
+
+==================================================================
+BASIC ARRAY COPY (Primitive Values Only)
+let a1 = [10, 20, 30, 40];
+
+// Two ways to create a copy:
+let a2 = [...a1];           // Spread operator (...)
+// OR
+let a2 = a1.slice();       // slice() method
+
+Both create a SHALLOW COPY when only primitive values (numbers, strings, etc.) are present.
+
+Memory:
+a1 → address 1000 → [10, 20, 30, 40]
+a2 → address 2000 → [10, 20, 30, 40]   ← completely separate array
+
+If you modify a1 → a2 remains unchanged
+a1.push(99);  → a2 still [10,20,30,40]   ← Perfect independence
+
+==================================================================
+PROBLEM ARISES WITH NESTED ARRAYS / OBJECTS
+let a1 = [
+    [10, 20],
+    [30, 40]
+];
+
+let a2 = [...a1];        // or a1.slice() → still SHALLOW COPY
+
+Memory view (Critical!):
+a1 (1000) → [ ref2001 , ref2002 ]
+                 ↓          ↓
+              [10,20]     [30,40]   ← actual inner arrays
+
+a2 (3000) → [ ref2001 , ref2002 ]   ← copies only the REFERENCES!
+
+Both a1[1] and a2[1] point to the SAME inner array
+
+a1[1].push(99);
+// → a1 becomes [[10,20], [30,40,99]]
+// → a2 also becomes [[10,20], [30,40,99]]   ← Unexpected change!
+
+This is why it's called SHALLOW COPY
+→ Top-level is copied
+→ Nested objects/arrays are NOT copied → only their references are copied
+
+==================================================================
+SHALLOW COPY METHODS (Same Behavior)
+1. Spread operator       → [...arr]
+2. arr.slice()           → returns shallow copy
+3. arr.concat()          → also shallow
+
+All three copy only the first level deeply.
+
+==================================================================
+DEEP COPY – The Real Independent Copy
+Only one reliable built-in way in modern JavaScript:
+
+let a2 = structuredClone(a1);
+
+What structuredClone() does:
+→ Creates a brand new array
+→ Recursively clones EVERY nested array/object
+→ Gives new memory addresses to all levels
+
+Memory after structuredClone:
+a1 (1000) → [ ref2001 , ref2002 ]
+                 ↓          ↓
+              [10,20]     [30,40]
+
+a2 (3000) → [ ref4001 , ref4002 ]
+                 ↓          ↓
+              [10,20]     [30,40]   ← completely separate copies
+
+Now:
+a1[1].push(99);
+// → Only a1 changes
+// → a2 remains untouched   ← True independence
+
+==================================================================
+ARRAY OF OBJECTS – Same Problem & Solution
+let a1 = [
+    { name: "An" },
+    { name: "Ben" }
+];
+
+let a2 = [...a1];           // or a1.slice() → SHALLOW
+a1[0].name = "Rohit";
+→ a2[0].name also becomes "Rohit"   ← because objects are referenced
+
+let a2 = structuredClone(a1);  ← DEEP COPY
+a1[0].name = "Rohit";
+→ a2 remains unchanged   ← Perfect!
+
+==================================================================
+SUMMARY TABLE
+Method                Copy Type     Nested Arrays/Objects Copied?
+---------------------------------------------------------------
+[...arr]              Shallow       No (only references copied)
+arr.slice()           Shallow       No
+arr.concat()          Shallow       No
+structuredClone(arr)  Deep          Yes (full recursive copy)
+
+==================================================================
+FINAL KEY POINTS
+1. Shallow copy = copies only the first level
+2. Deep copy = copies everything, no matter how many levels deep
+3. In JavaScript, arrays & objects are stored by REFERENCE
+4. Always remember the memory diagram → it removes 99% of confusion
+5. For true independent copies of complex data → use structuredClone()
+6. structuredClone() is a global built-in function (not a method on array)
+
+You now fully understand Shallow vs Deep Copy!
+Never get confused again.
+
+Keep learning deeply – that's how you stand out!
+==================================================================

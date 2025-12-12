@@ -1,0 +1,140 @@
+JavaScript Scope Chain - Complete Notes
+=======================================
+
+What is Scope Chain?
+--------------------
+Scope Chain = The mechanism JavaScript uses to determine where a variable is accessible.
+
+Rule (Most Important):
+→ A variable can access anything in its own scope AND all outer (parent) scopes
+→ But it CANNOT access inner (child) scopes
+→ Lookup goes UPWARDS only (never downwards)
+
+Types of Scopes in JavaScript
+-----------------------------
+1. Global Scope       → Outside all functions
+2. Function Scope     → Inside a function
+3. Block Scope        → Inside { } of if, for, while, etc. (only with let/const)
+
+Example 1: Basic Scope Chain
+-----------------------------
+let username = "Sarah";
+let userRole = "admin";
+
+function checkAccess() {
+    let hasAccess = false;
+
+    if (userRole === "admin") {
+        let welcomeMsg = `${username} you have admin privileges`;
+        hasAccess = true;
+        console.log(welcomeMsg);
+    }
+    console.log("hasAccess:", hasAccess);
+}
+
+checkAccess();
+
+// Scope Chain Visualization:
+// Global Scope → username, userRole, checkAccess()
+//   └── checkAccess Scope → hasAccess
+//         └── if Block Scope → welcomeMsg
+
+→ Inside if block: can access username & userRole (from global) ✓
+// → Outside function: cannot access welcomeMsg or hasAccess → ReferenceError
+
+Key Point:
+→ Child scope can access parent scope
+→ Parent scope CANNOT access child scope
+
+Example 2: Nested Functions (Function inside Function)
+-------------------------------------------------------
+let firstName = "Rohit";
+
+function outerFunction() {
+    let outerVar = "This is from outer function";
+
+    function innerFunction() {
+        let innerVar = "I am from inner function";
+        console.log(innerVar);    // Accessible (own scope)
+        console.log(outerVar);    // Accessible (parent scope)
+        console.log(firstName);   // Accessible (global scope)
+    }
+
+    innerFunction();
+    // console.log(innerVar); // ReferenceError! Cannot access child's variable
+}
+
+outerFunction();
+
+// Scope Chain When innerFunction Runs:
+// innerFunction Scope → innerVar
+//     └── outerFunction Scope → outerVar, innerFunction()
+//         └── Global Scope → firstName, outerFunction()
+
+→ innerFunction can access outerVar & firstName ✓
+// → outerFunction cannot access innerVar ✗
+
+Example 3: Block Scope + Scope Chain
+------------------------------------
+let city = "London";
+
+function showWeather() {
+    let temperature = 18;
+
+    if (temperature <= 20) {
+        let jacketNeeded = true;
+        console.log(`It's chilly in ${city}`);        // city from global ✓
+        console.log(`Temperature: ${temperature}°C`); // temperature from function scope ✓
+        console.log("Jacket needed:", jacketNeeded);  // own block scope ✓
+    }
+
+    // console.log(jacketNeeded); // ReferenceError! jacketNeeded is block-scoped
+}
+
+function greet() {
+    console.log("Welcome to", city); // city from global ✓
+}
+
+showWeather();
+greet();
+
+// Output:
+// It's chilly in London
+// Temperature: 18°C
+// Jacket needed: true
+// Welcome to London
+
+Why jacketNeeded is not accessible outside if block?
+→ Because it was declared with let inside { } → block scope
+→ Function scope cannot go down into block scope
+
+Scope Chain Lookup Steps (How JS Finds a Variable)
+--------------------------------------------------
+When you use a variable (e.g. console.log(city)):
+1. Check current scope
+2. If not found → go one level up (parent scope)
+3. Keep going up until global scope
+4. If still not found → ReferenceError
+
+There is NO downward lookup!
+
+Summary: Scope Chain Rules
+--------------------------
+1. Global → accessible everywhere
+2. Function scope → accessible inside that function + its inner scopes
+3. Block scope (let/const) → accessible only inside that { }
+4. Inner scopes can access outer variables
+5. Outer scopes CANNOT access inner variables
+6. Scope chain goes UP only (child → parent → grandparent → global)
+
+Why This Matters
+----------------
+→ Helps you predict output in interviews
+→ Helps you debug "ReferenceError" quickly
+→ Foundation for understanding Closures (next topic!)
+
+Master Scope Chain = You will debug JS like a pro!
+
+=======================================
+End of Scope Chain Notes
+Save as: scope-chain-notes.txt

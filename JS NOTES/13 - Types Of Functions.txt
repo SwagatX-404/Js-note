@@ -1,0 +1,156 @@
+================================================================================
+5 WAYS TO WRITE FUNCTIONS IN JAVASCRIPT (MUST KNOW FOR INTERVIEWS)
+================================================================================
+
+There are exactly 5 major ways to define a function in JavaScript.
+All of them are functions, just written differently.
+
+────────────────────────────────────────────────
+1. FUNCTION DECLARATION (Most Common & Hoisted)
+────────────────────────────────────────────────
+function add(a, b) {
+    return a + b;
+}
+
+console.log(add(10, 20));  // 30
+
+Features:
+- Starts with "function" keyword
+- Has a name (add)
+- Fully hoisted → can call before declaration
+- Most beginners & interviews use this
+
+────────────────────────────────────────────────
+2. FUNCTION EXPRESSION (Not Hoisted Fully)
+────────────────────────────────────────────────
+const add = function(a, b) {
+    return a + b;
+};
+
+console.log(add(100, 200));  // 300
+
+OR (you can name it too - called Named Function Expression)
+const add = function sum(a, b) {
+    return a + b;
+};
+
+Features:
+- Function has no name initially (anonymous)
+- Assigned to a variable (const/let/var)
+- Only variable is hoisted (not the function) → cannot call before line
+- Very commonly used in real projects
+
+────────────────────────────────────────────────
+3. ARROW FUNCTION (Modern, Concise, No 'this' binding)
+────────────────────────────────────────────────
+const add = (a, b) => {
+    return a + b;
+};
+
+One-liner version (most popular):
+const add = (a, b) => a + b;          // implicit return, no {} no return needed
+
+Even shorter versions:
+const square = x => x * x;             // single param → no ()
+const greet = () => "Hello";           // no param → empty ()
+
+console.log(add(50, 60));   // 110
+
+Features:
+- No function keyword
+- Uses => (fat arrow)
+- No own 'this', 'arguments', or 'super'
+- Cannot be used as constructor (new)
+- Perfect for callbacks, short functions
+
+Warning for Beginners:
+Avoid one-liners initially → reduces clarity
+Write full { return } until you're comfortable
+
+────────────────────────────────────────────────
+4. IIFE – Immediately Invoked Function Expression
+────────────────────────────────────────────────
+(function() {
+    console.log("I run immediately!");
+})();
+
+With parameters:
+(function(a, b) {
+    console.log("Sum =", a + b);
+})(10, 20);
+
+Arrow IIFE (modern):
+(() => {
+    console.log("Arrow IIFE runs immediately");
+})();
+
+Features:
+- Declared and executed at the same place
+- No need to call separately
+- Creates private scope (old way to avoid global pollution)
+- Used in old libraries, module patterns, one-time setup
+
+────────────────────────────────────────────────
+────────────────────────────────────────────────
+5. GENERATOR FUNCTION (Advanced – Covered Later)
+────────────────────────────────────────────────
+function* generateNumbers() {
+    yield 1;
+    yield 2;
+    yield 3;
+}
+
+Will be taught later with iterators & async concepts
+
+Also coming later (OOP section):
+- Method inside object
+- Constructor function (old way)
+
+================================================================================
+QUICK COMPARISON TABLE (Memorize This!)
+
+Type                  | Syntax                          | Hoisted? | Has Name? | Own 'this'? | Use Case
+----------------------|----------------------------------|----------|-----------|-------------|------------------------
+Declaration           | function name() {}               | Yes (full)   | Yes       | Yes         | Regular functions
+Expression            | const x = function() {}          | No (only var) | Optional  | Yes         | Callbacks, modules
+Arrow Function        | const x = () => {}               | No       | No        | No          | Short callbacks
+IIFE                  | (function() {})()                | No       | No        | Yes         One-time execution
+Generator             | function* name() { yield }       | Yes      | Yes       | Yes         Iterable sequences
+
+================================================================================
+INTERVIEW QUESTIONS YOU CAN NOW ANSWER CONFIDENTLY
+
+Q: Call add(5,10) before defining it → which ones work?
+→ Only Function Declaration works (because of hoisting)
+
+Q: What is the difference between normal function and arrow function?
+→ Arrow has no 'this', no 'arguments', shorter syntax, not hoisted
+
+Q: When to use IIFE?
+→ To create private scope, run code once, avoid polluting global
+
+Q: Can arrow function be a constructor?
+→ No → new (() => {}) → TypeError
+
+Q: Write a one-line arrow function to square a number.
+→ const sq = x => x * x;
+
+================================================================================
+PRACTICE ASSIGNMENT (Do it now!)
+
+Convert this normal function into all 4 types (Declaration → Expression → Arrow → IIFE):
+
+function greet(name) {
+    return "Hello " + name;
+}
+console.log(greet("Rohit"));
+
+Write all 4 versions and run them → see the difference yourself!
+
+================================================================================
+
+You have now mastered the 5 ways to write functions in JavaScript!
+Next → Hoisting, 'this' keyword, Closures, Callback Hell → all coming soon.
+
+Keep practicing. You're doing amazing!
+Namaste

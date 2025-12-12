@@ -1,0 +1,111 @@
+CLASS NOTES – PATTERN PROGRAMMING MASTERCLASS (Hollow Square + Advanced X Pattern)
+Continuation of Loops – Most Important for Logic Building & Interviews
+
+1. Hollow Square Pattern (N × N)
+Goal: Print a square with stars only on borders, hollow inside
+
+Logic:
+- Print star (*) if the current position is on the border
+- Print space (" ") otherwise
+
+Border conditions (when to print star):
+1. First row       → i === 1
+2. Last row        → i === n
+3. First column    → j === 1
+4. Last column     → j === n
+
+Final condition (any one true → print star):
+if (i === 1 || i === n || j === 1 || j === n) → print "*"
+else → print " "
+
+Code (1-based indexing):
+let n = 11;
+for (let i = 1; i <= n; i++) {
+    let row = "";
+    for (let j = 1; j <= n; j++) {
+        if (i === 1 || i === n || j === 1 || j === n) {
+            row += "* ";
+        } else {
+            row += "  ";    // two spaces for alignment
+        }
+    }
+    console.log(row);
+}
+
+Pro Tip: Use variables instead of hardcoding 1 and n
+→ Makes code work for any size without changing logic
+
+2. Advanced Pattern: Beautiful X with Cross & Diagonals (11×11)
+Goal: Create this stunning pattern with 8 lines:
+   Borders + Horizontal midline + Vertical midline + 4 diagonals
+
+All conditions (OR together):
+1. Border:
+   i === 1 || i === n || j === 1 || j === n
+
+2. Horizontal midline:
+   i === Math.floor(n/2)
+
+3. Vertical midline:
+   j === Math.floor(n/2)
+
+4. Main diagonal (top-left to bottom-right):
+   i === j
+
+5. Anti-diagonal (top-right to bottom-left):
+   i + j === n - 1
+
+6. Upper parallel diagonal:
+   i + j === Math.floor(n/2)
+
+7. Lower parallel diagonal:
+   i - j === Math.floor(n/2)     OR     j - i === Math.floor(n/2)
+
+Final Code (0-based indexing – cleaner):
+let n = 21;   // odd number recommended for perfect symmetry
+for (let i = 0; i < n; i++) {
+    let row = "";
+    for (let j = 0; j < n; j++) {
+        if (
+            i === 0 || i === n-1 || j === 0 || j === n-1 ||           // borders
+            i === Math.floor(n/2) || j === Math.floor(n/2) ||       // cross
+            i === j ||                                              // main diagonal
+            i + j === n - 1 ||                                      // anti-diagonal
+            i + j === Math.floor(n/2) ||                            // upper parallel
+            j - i === Math.floor(n/2)                               // lower parallel
+        ) {
+            row += "* ";
+        } else {
+            row += "  ";
+        }
+    }
+    console.log(row);
+}
+
+3. Key Concepts You Mastered
+- Nested loops (loop inside loop) → for rows & columns
+- Building row as string → perfect alignment
+- Logical OR (||) → combine multiple conditions
+- Math.floor() → for correct center in even/odd sizes
+- 0-based vs 1-based indexing → both work if conditions match
+- Pattern = Pure Logic + Loops + if-else
+
+4. Why Companies LOVE Pattern Questions?
+- Tests loop understanding
+- Tests logical thinking
+- Tests attention to boundary conditions
+- Tests clean code writing
+
+5. Golden Rules for Pattern Programming
+1. Always build row as string → row += "* " or "  "
+2. Use variables (n) → never hardcode 5, 10, etc.
+3. Use Math.floor(n/2) for center
+4. Draw grid on paper → find i & j relationship
+5. Solve 100+ patterns → logic becomes second nature
+
+You are no longer a beginner.
+You are now a LOOP & LOGIC MASTER!
+
+Thank you! Namaste
+Next Class → Functions in JavaScript (Reusable Code)
+Keep practicing patterns daily – 10 patterns = 10x stronger logic!

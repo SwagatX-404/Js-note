@@ -1,0 +1,116 @@
+================================================================================
+PASS BY VALUE vs PASS BY REFERENCE IN JAVASCRIPT (MUST MASTER!)
+================================================================================
+
+JavaScript has only TWO kinds of data types:
+
+1. Primitives (Pass by Value)
+   → number, string, boolean, undefined, null, bigint, symbol
+
+2. Objects (Pass by Reference)
+   → {}, arrays, functions, dates — literally everything else
+
+================================================================================
+1. PASS BY VALUE (Primitives)
+
+When you assign a primitive from one variable to another → a COPY is made.
+
+let a = 100;
+let b = a;        // b gets a COPY of 100
+
+b = 200;
+
+console.log(a);   // 100 (unchanged)
+console.log(b);   // 200
+
+Visualization:
+a → [100]          (independent copy)
+b → [200]          (independent copy)
+
+Real-life analogy:
+Original document → Photocopy (Xerox)
+→ Change photocopy → Original stays same
+→ Change original   → Photocopy stays same
+
+Primitives are always passed by value → You get independent copies.
+
+================================================================================
+2. PASS BY REFERENCE (Objects, Arrays, Functions)
+
+When you assign an object from one variable to another → NO COPY is made.  
+Both variables point to the SAME object in memory.
+
+const c1 = {
+    name: "BMW",
+    cost: 75.6,
+    mileage: 8.9
+};
+
+const c2 = c1;    // c2 gets the ADDRESS of the same object (NOT a copy!)
+
+c2.name = "Kia";
+
+console.log(c1.name);  // Kia (changed!)
+console.log(c2.name);  // Kia
+
+Visualization (Memory):
+
+Heap (one object lives here)
+┌─────────────────────────────────┐
+│ Address: 1000                   │
+│ {                               │
+│   name: "Kia"    ← changed!     │
+│   cost: 75.6                    │
+│   mileage: 8.9                  │
+│ }                               │
+└─────────────────────────────────┘
+       ↑             ↑
+      c1            c2
+   (both hold 1000)
+
+Real-life analogy:
+Bank locker → One locker, two keys
+→ Open with key1 or key2 → same locker
+→ Put money using key1 → key2 also sees the money
+
+Objects are always passed by reference → Multiple variables can refer to the same object.
+
+================================================================================
+MEMORY DIAGRAM (Stack + Heap)
+
+Stack (Variables)              Heap (Actual Objects)
+────────────────────           ─────────────────────────────
+c1 → 1000                      ┌─────────────────────────────────┐
+c2 → 1000   ← same address!   │ Address 1000                    │
+                               │ { name: "Kia", cost: 75.6, ...} │
+                               └─────────────────────────────────┘
+
+Primitives go directly in Stack:
+let x = 10;     → x → [10] in Stack
+
+================================================================================
+KEY INTERVIEW QUESTIONS & ANSWERS
+
+Q1: Is JavaScript Pass by Value or Pass by Reference?
+→ Technically: Pass by Value (always!)
+  But the VALUE that is passed can be:
+  - A primitive value → copy (Pass by Value)
+  - An address/reference → same object (behaves like Pass by Reference)
+
+So we say:
+"JavaScript is Pass by Value, but when the value is an object, the value being passed is the reference."
+
+Q2: What will be the output?
+```js
+let x = 10;
+let y = x;
+y = 20;
+console.log(x); // ?    → 10 (primitive → copy)
+
+
+let obj1 = { name: "Rohit" };
+let obj2 = obj1;
+obj2.name = "Priya";
+console.log(obj1.name); // ?  → "Priya" (same object → mutation visible to both)
+
+

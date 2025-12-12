@@ -1,0 +1,134 @@
+JavaScript Array Higher-Order Methods (Using Callbacks)
+=======================================================
+
+These are the most asked methods in interviews!
+All of them take a CALLBACK function as input.
+
+1. map() → Transform every element → Returns NEW array (same length)
+--------------------------------------------------------------------
+let numbers = [1, 4, 9, 16];
+
+let result = numbers.map(x => Math.sqrt(x));
+// → [1, 2, 3, 4]
+
+How map works:
+→ Takes each element → passes to callback → stores returned value in new array
+
+Common use: double, square, convert to string, etc.
+let doubled = numbers.map(x => x * 2);
+
+2. filter() → Keep only elements that pass a condition → Returns NEW array
+-------------------------------------------------------------------------
+let ages = [32, 15, 19, 12];
+
+let adults = ages.filter(age => age >= 18);
+// → [32, 19]
+
+How filter works:
+→ If callback returns true  → element is kept
+→ If callback returns false → element is skipped
+
+Common use: filter even/odd, active users, price > 1000, etc.
+
+3. reduce() → Reduce entire array to ONE value (sum, product, max, etc.)
+-----------------------------------------------------------------------
+let numbers = [1, 4, 9, 16];
+
+let sum = numbers.reduce((total, x) => total + x, 0);
+// → 30
+
+Syntax: array.reduce((accumulator, currentValue) => { ... }, initialValue)
+
+How reduce works:
+Start → total = 0
+1st    → total = 0 + 1 = 1
+2nd    → total = 1 + 4 = 5
+3rd    → total = 5 + 9 = 14
+4th    → total = 14 + 16 = 30 → returns 30
+
+Find max:
+let max = numbers.reduce((max, curr) => curr > max ? curr : max, numbers[0]);
+
+4. some() → "Is there AT LEAST ONE element that satisfies condition?"
+--------------------------------------------------------------------
+let scores = [65, 72, 90, 58];
+
+let hasGradeA = scores.some(score => score > 85);
+// → true (because 90 exists)
+
+Returns true if AT LEAST ONE element passes the test
+
+5. every() → "Do ALL elements satisfy the condition?"
+----------------------------------------------------
+let passed = scores.every(score => score >= 50);
+// → true
+
+Returns true only if EVERY element passes
+
+6. find() → Return the FIRST element that matches condition
+-----------------------------------------------------------
+let firstHigh = scores.find(score => score > 80);
+// → 90
+
+Returns the element itself (not index)
+Returns undefined if not found
+
+7. findIndex() → Return the INDEX of first matching element
+------------------------------------------------------------
+let index = scores.findIndex(score => score > 80);
+// → 2 (index of 90)
+
+Returns -1 if not found
+
+8. sort() → Sort array in place (mutates original!)
+---------------------------------------------------
+let fruits = ["banana", "apple", "pear", "kiwi"];
+fruits.sort();
+// → ["apple", "banana", "kiwi", "pear"]
+
+let scores = [85, 67, 72, 90];
+scores.sort((a, b) => a - b);  // ascending
+// → [67, 72, 85, 90]
+
+scores.sort((a, b) => b - a);  // descending
+
+Warning: scores.sort() without callback → sorts as strings! → [67, 72, 85, 90] becomes [67, 72, 85, 90] wrong!
+
+Quick Comparison Table
+----------------------
+Method        Returns                    Original Array?   Common Use
+map()         New array (transformed)    No change         Transform data
+filter()      New array (filtered)       No change         Keep certain items
+reduce()      Single value               No change         Sum, max, concat, etc.
+some()        true/false                 No change         "Any match?"
+every()       true/false                 No change         "All match?"
+find()        First matching element     No change         Find one item
+findIndex()   Index of first match       No change         Find position
+sort()        Sorted array               MUTATES!          Alphabetical/numerical order
+
+One-Liner Interview Answers
+---------------------------
+Q: Difference between map and forEach?
+→ map() returns new array, forEach() returns undefined
+
+Q: When to use reduce?
+→ When you want to boil down array to one value (sum, max, object, string, etc.)
+
+Q: find vs filter?
+→ find() → returns first match (one element)
+→ filter() → returns all matches (array)
+
+Q: some vs every?
+→ some() → "at least one" (OR logic)
+→ every() → "all of them" (AND logic)
+
+Master These 8 → You are ready for 95% of array questions in interviews!
+
+================================================================
+End of Higher-Order Array Methods Notes
+Save as: javascript-array-higher-order-methods.txt
+
+Next Topic Coming: forEach, includes, join, reverse, slice, concat, spread operator, destructuring, etc.
+
+Just say the word — next notes ready instantly!
+Keep coding! You’re doing amazing!

@@ -1,0 +1,234 @@
+==================================================================
+   JAVA SCRIPT ASYNCHRONOUS PROGRAMMING - PART 2 (THE REAL MAGIC)
+   How JavaScript Achieves Async Using Event Loop + Web APIs
+==================================================================
+
+Core Truth:
+JavaScript is SINGLE-THREADED & SYNCHRONOUS by nature
+→ But it FEELS multi-threaded because of → Browser/Node.js Web APIs + Event Loop
+
+------------------------------------------------------------------
+1. Full Memory Architecture (MUST MEMORIZE THIS DIAGRAM)
+------------------------------------------------------------------
+
+                    ┌────────────────────┐
+                    │   CALL STACK       │  ← Only 1 thread executes here
+                    │  (JS Engine)       │
+                    └────────────────────┘
+                             ▲
+                             │
+                    ┌────────────────────┐
+                    │   WEB APIs         │  ← Given by Browser/Node.js
+                    │ - setTimeout      │     (NOT part of JavaScript!)
+                    │ - setInterval      │
+                    │ - DOM              │
+                    │ - fetch()          │
+                    │ - XMLHttpRequest   │
+                    └────────────────────┘
+                             ▲
+            ┌────────────────┴────────────────┐
+            ▼                                 ▼
+   MICROTASK QUEUE                     CALLBACK QUEUE
+   (Higher Priority)                  (Normal Priority)
+   → Promises (.then)                  → setTimeout, setInterval
+   → MutationObserver                  → I/O callbacks, DOM events
+
+                    ┌────────────────────┐
+                    │    EVENT LOOP      │ ← Continuously watches Call Stack
+                    └───────────────────────▲────────────┘
+                            │
+                     Stack Empty? → Yes → Move tasks
+
+------------------------------------------------------------------
+2. How setTimeout Actually Works (Step-by-Step)
+------------------------------------------------------------------
+
+Code:
+console.log("Start");
+
+setTimeout(() => console.log("Timeout 2000"), 2000);
+
+console.log("End");
+
+Execution Flow:
+
+1. Global Execution Context created
+2. "Start" printed
+3. setTimeout called → Web API registers timer (2000ms)
+   → Callback (arrow function) sent to Web API (NOT to stack!)
+   → Control immediately returns → No blocking!
+4. "End" printed
+5. Global EC popped → Stack becomes EMPTY
+6. After ~2 seconds, timer expires → Callback moved to CALLBACK QUEUE
+7. Event Loop sees stack empty → Takes callback from queue → Pushes to stack
+8. "Timeout 2000" printed
+
+Output:
+Start
+End
+Timeout 2000   ← Came AFTER 2 seconds, but AFTER "End"!
+
+Key Point:
+setTimeout(..., 0) → Still goes to queue, executes AFTER current stack clears
+Even 0ms delay ≠ immediate!
+
+------------------------------------------------------------------
+3. Classic Interview Question – Predict Output
+------------------------------------------------------------------
+
+function fun1() { console.log("Fun1"); }
+function fun2() { 
+  setTimeout(() => console.log("Fun2"), 5000); 
+}
+function fun3() { 
+  setTimeout(() => console.log("Fun3"), 2000); 
+}
+function fun4() { console.log("Fun4"); }
+
+fun1();
+fun2();
+fun3();
+fun4();
+
+Correct Output:
+Fun1
+Fun4
+Fun3        ← 2 sec timer finished first → entered queue first
+Fun2        ← 5 sec timer finished later
+
+Even though fun2() was called before fun3(), fun3() executes first!
+Because timer decides queue entry order, not call order
+
+------------------------------------------------------------------
+4. setTimeout vs setInterval – Clear Difference
+------------------------------------------------------------------
+
+setTimeout(callback, delay)     → Runs ONCE after delay
+setInterval(callback, delay)    → Runs REPEATEDLY every delay
+
+Example: Live Sports Score Update
+setInterval(() => fetchLatestScore(), 2000);  // Every 2 sec
+
+How to STOP setInterval?
+
+const id = setInterval(callback, 2000);
+
+// Later, to stop:
+clearInterval(id);
+
+Real Use Case: Stop after 10 seconds
+const id = setInterval(() => console.log("Fetching data..."), 2000);
+
+setTimeout(() => {
+  clearInterval(id);
+  console.log("Stopped polling");
+}, 10000);
+
+Output:
+Fetching data... (0s)
+Fetching data... (2s)
+Fetching data... (4s)
+Fetching data... (6s)
+Fetching data... (8s)
+Stopped polling (10s)
+
+------------------------------------------------------------------
+5. Microtask Queue vs Callback Queue (Priority Matters!)
+------------------------------------------------------------------
+
+Microtask Queue (High Priority):
+- Promise.then(), Promise.catch()
+- queueMicrotask()
+- MutationObserver
+
+Callback Queue (Normal Priority):
+- setTimeout, setInterval
+- DOM events (click, etc.)
+- AJAX callbacks
+
+Event Loop Priority Rule:
+1. Execute all Microtasks first (even if added later)
+2. Then execute one task from Callback Queue
+
+Example:
+console.log("Start");
+
+setTimeout(() => console.log("Timeout"), 0);
+
+Promise.resolve().then(() => console.log("Promise"));
+
+console.log("End");
+
+Output:
+Start
+End
+Promise      ← Microtask executed before timeout!
+Timeout      ← Even with 0ms, comes last
+
+This is asked in 90% of senior interviews!
+
+------------------------------------------------------------------
+6. Summary Table – Must Know for Interviews
+------------------------------------------------------------------
+
+Feature                  Location            Belongs to        Executes when
+--------------------------------------------------------------------
+Call Stack         → JS Engine        → Synchronous code
+Web APIs           → Browser/Node.js  → Timers, DOM, fetch
+Callback Queue     → Browser/Node.js  → setTimeout, events
+Microtask Queue    → Browser/Node.js  → Promises
+Event Loop         → Browser/Node.js  → Moves tasks when stack empty
+
+setTimeout(callback, 0) → Still asynchronous → Goes to queue
+setTimeout delay ≠ execution time → Only queue entry time
+
+------------------------------------------------------------------
+7. Top 10 Interview One-Liners (Memorize These)
+------------------------------------------------------------------
+
+1. "JavaScript is single-threaded but behaves asynchronously due to Event Loop and Web APIs.
+
+2. setTimeout(..., 0) does NOT mean execute immediately — it means "execute as soon as stack is empty".
+
+3. Promises execute before setTimeout even with 0ms delay (Microtask > Callback Queue).
+
+4. Event Loop checks Call Stack → If empty → First drains Microtask Queue → Then Callback Queue.
+
+5. Web APIs (setTimeout, fetch, DOM) are not part of JavaScript — provided by browser/Node.js.
+
+6. Node.js = JavaScript Engine + Web APIs (C++ bindings)
+
+7. clearInterval(setIntervalId) is the only way to stop setInterval.
+
+8. You can nest setTimeout inside setInterval or vice versa for complex timing.
+
+9. Never block the main thread — UI will freeze.
+
+10. "Non-blocking I/O" in Node.js works exactly like this model.
+
+------------------------------------------------------------------
+Final Message from the Class
+
+You now know the deepest secret of JavaScript:
+Even though JS has only one thread,
+it can do 1000 things "at once"
+because of → Web APIs + Event Loop + Queues
+
+This is how:
+→ WhatsApp receives messages while you type
+→ Images load without freezing buttons
+→ Live scores update every second
+→ Spotify plays music while you browse
+
+If you understood today’s class → You are now in the top 5% of JS developers.
+
+Next Classes Coming:
+→ Promises & Async/Await (Microtask Queue in action)
+→ fetch() API & Real HTTP calls
+→ Event Listeners & DOM manipulation
+
+Keep revising. Keep practicing output questions.
+
+Namaste. See you in the next class — it’s about to get even crazier!
+
+==================================================================

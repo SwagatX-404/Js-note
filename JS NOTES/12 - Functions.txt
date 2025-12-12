@@ -1,0 +1,159 @@
+================================================================================
+JAVASCRIPT FUNCTIONS - COMPLETE NOTES (Basics + Why Functions + Memory View)
+================================================================================
+
+PART 1: WHAT IS A FUNCTION?
+
+A function is a reusable block of code that performs a specific task.
+
+Structure of a Function (Non-technical):
+→ Name
+→ Input  (optional)
+→ Activity / Task (body)
+→ Output (optional)
+
+Technical Syntax in JavaScript:
+function functionName(parameters) {
+    // body - task/activity
+    return value;  // optional
+}
+
+Key Terms:
+- parameters  → variables to receive input
+- arguments   → actual values passed when calling
+- return      → sends output back to caller
+- calling/invoking → executing the function → functionName()
+
+================================================================================
+4 TYPES OF FUNCTIONS IN JAVASCRIPT (MOST IMPORTANT FOR INTERVIEWS)
+
+1. No Parameters, No Return
+   function greet() {
+       console.log("Hello");
+   }
+   greet(); → prints Hello, returns nothing
+
+2. No Parameters, But Returns Value
+   function getSum() {
+       return 10 + 20;
+   }
+   let result = getSum(); // result = 30
+
+3. Takes Parameters, No Return
+   function add(x, y) {
+       console.log(x + y);
+   }
+   add(10, 20); → prints 30
+
+4. Takes Parameters, Returns Value (MOST USED)
+   function add(x, y) {
+       return x + y;
+   }
+   let sum = add(10, 20); // sum = 30
+
+================================================================================
+HOW FUNCTIONS WORK IN MEMORY (Execution Context + Call Stack)
+
+Every JavaScript program runs inside Node.js / Browser runtime.
+
+Key Memory Areas:
+- Stack → keeps track of function calls
+- Heap  → stores objects, functions etc.
+
+When program starts:
+1. Global Execution Context (GEC) is created on the Stack
+2. All variables declared outside functions → memory allocated in GEC
+3. Values assigned
+4. When a function is CALLED:
+   - Control jumps to function body
+   - New Execution Context (EC) is pushed on stack
+   - Parameters get memory + values from arguments
+   - Local variables created inside function
+   - Code executes line by line
+   - When return or end reached → EC is popped (destroyed)
+   - Control returns to previous context
+5. When program ends → GEC popped → Stack empty
+
+Example Trace (Type 4 function):
+let a = 100, b = 200;
+
+function add(x, y) {
+    let c = x + y;
+    return c;
+}
+
+let result = add(a, b);
+console.log(result);
+
+Stack Flow:
+1. GEC created → a=100, b=200, result=unassigned
+2. add(a,b) called → add EC created → x=100, y=200, c=300
+3. return 300 → 300 assigned to result → add EC destroyed
+4. console.log → prints 300
+5. Program ends → GEC destroyed
+
+================================================================================
+WHY DO WE NEED FUNCTIONS? → DRY PRINCIPLE
+
+DRY = Do Not Repeat Yourself
+
+Bad Example (Repeating Code):
+let marks1 = 93, max1 = 100;
+let perc1 = (marks1/max1)*100;
+let grade1;
+if(perc1 >= 90) grade1 = 'A';
+else if(perc1 >= 80) grade1 = 'B';
+// ... same logic repeated for student2, student3 → 100 students = 2500 lines!
+
+Good Example Using Function (Reusable):
+function calculateGrade(marks, maxMarks) {
+    let percentage = (marks / maxMarks) * 100;
+    let grade;
+
+    if(percentage >= 90) grade = 'A';
+    else if(percentage >= 80) grade = 'B';
+    else if(percentage >= 70) grade = 'C';
+    else if(percentage >= 60) grade = 'D';
+    else grade = 'F';
+
+    console.log("Grade:", grade);
+    // OR return grade;
+}
+
+calculateGrade(93, 100);  // Grade: A
+calculateGrade(62, 100);  // Grade: D
+calculateGrade(32, 50);   // Grade: D
+
+→ Same logic, used 100 times without rewriting → This is the REAL power of functions!
+
+================================================================================
+KEY TAKEAWAYS
+
+1. Functions prevent code repetition (DRY)
+2. Functions make code reusable, readable, maintainable
+3. 4 types of functions → know them for interviews
+4. Every function call creates its own Execution Context on the Call Stack
+5. Local variables die when function ends (EC popped)
+6. return = gives value back + stops function execution
+7. Parameters = placeholders | Arguments = actual values
+8. Always call a function to execute it → it doesn't run automatically
+
+================================================================================
+PRACTICE ASSIGNMENT (Do this!)
+
+Write the Type-4 function version of calculateGrade that RETURNS the grade instead of printing it.
+
+Then call it like:
+let g1 = calculateGrade(95, 100);
+let g2 = calculateGrade(71, 100);
+console.log("Student 1:", g1);
+console.log("Student 2:", g2);
+
+Trace it on Call Stack step by step and verify.
+
+================================================================================
+
+Master these concepts → You have truly understood JavaScript Functions!
+Next topics: Function Expressions, Arrow Functions, Hoisting, IIFE, Closures etc.
+
+Keep practicing! Happy Coding!

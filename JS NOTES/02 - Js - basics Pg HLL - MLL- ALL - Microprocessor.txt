@@ -1,0 +1,77 @@
+CLASS 2 - IMPORTANT NOTES (Computer Science Fundamentals)
+Topic: Microprocessor, Binary, Programs, Programming Languages Levels & Translators
+
+1. Microprocessor – The Brain of the Computer
+   - Everything a computer does (play song, video, typing, mouse movement) is controlled by the Microprocessor (CPU).
+   - Common names: Intel i3, i5, i7, Apple M1, M2, AMD Ryzen etc. → all are microprocessors.
+
+2. Microprocessor is made of Semiconductor Technology
+   - Inside every microprocessor → billions of tiny devices called TRANSISTORS.
+   - Only 2 types of transistors: NPN and PNP.
+   - Each transistor can store only voltage → either +5V or 0V.
+         → +5V = ON state = represented as 1
+         → 0V  = OFF state = represented as 0
+
+3. Most Important Point
+   - Microprocessor understands ONLY 0s and 1s (Binary).
+   - It does NOT understand Hindi, English, C, C++, Java, Python, JavaScript etc.
+   - 0s and 1s = Binary = Machine Language = Machine-Level Language (ML)
+
+4. What is a Program?
+   - Microprocessor is a “dumb” device → it cannot think on its own.
+   - It will do NOTHING until a human gives it instructions.
+   - Collection of Instructions given to the microprocessor = PROGRAM
+   - Process of writing these instructions = PROGRAMMING / CODING
+   - Person who writes these instructions = PROGRAMMER / CODER
+
+5. Levels of Programming Languages
+
+   Level 1: Machine-Level Language (1930s)
+      - Pure 0s and 1s only
+      - Extremely difficult for humans
+      - Example of adding two numbers: 10110000 01100001 etc.
+
+   Level 2: Assembly-Level Language (late 1930s)
+      - Uses short English-like words (mnemonics) instead of 0s & 1s
+      - Example: MOV AX, BX   ADD AX, CX etc.
+      - Still very hard, but better than pure binary
+
+   Problem: Microprocessor still cannot understand Assembly language directly!
+   → Solution: ASSEMBLER
+      - Assembler = Software that converts Assembly code → Machine code (0s & 1s) line by line.
+
+   Level 3: High-Level Language (Modern languages – what we use today)
+      - Uses English-like statements
+      - Example (Python):
+        a = 10
+        b = 20
+        c = a + b
+        print(c)
+      - Very easy for humans
+
+   Problem: Microprocessor still cannot understand High-Level languages!
+   → Solution: COMPILER (or Interpreter)
+      - Compiler = Software that converts entire High-Level program → Machine code (0s & 1s) line by line.
+      - After compilation → microprocessor understands and executes.
+
+6. Summary Table
+
+   Language Level       | Example                          | Human Friendly? | CPU Understands Directly? | Translator Needed
+   ---------------------|----------------------------------|-----------------|----------------------------|-------------------
+   Machine Level (ML)   | 10110000 01100001 ...            | No              | Yes                        | No
+   Assembly Level (AL)  | MOV AX, BX   ADD AX, CX          | A little        | No                         | Assembler
+   High-Level (HL)      | a = 10; b = 20; c = a + b;       | Yes             | No                         | Compiler / Interpreter
+
+7. Modern Programming Languages we learn & get jobs in
+   - Java, Python, JavaScript, C, C++, C#, Go, Kotlin, Swift etc.
+   → ALL are High-Level Languages.
+
+8. Final Key Points to Remember Forever
+   - CPU speaks only Binary (0s and 1s).
+   - Humans write code in High-Level languages (English-like).
+   - Compiler converts our High-Level code → Binary so CPU can execute it.
+   - Without instructions (program), CPU does nothing.
+   - Programmer = Person who writes instructions for the dumb but super-fast microprocessor.
+
+THANK YOU! SEE YOU IN NEXT CLASS
+Namaste

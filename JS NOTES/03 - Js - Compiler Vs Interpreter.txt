@@ -1,0 +1,101 @@
+CLASS 3 - IMPORTANT NOTES (JavaScript Series)
+Topic: How JavaScript Executes – Compilation vs Interpretation + Script vs Interactive Mode
+
+1. Quick Recap from Class 2
+   - JavaScript is a High-Level Language (English-like statements).
+   - Microprocessor understands ONLY Machine-Level (0s and 1s).
+   - So High-Level code MUST be converted to Machine-Level before execution.
+
+2. Two Ways to Convert High-Level → Machine-Level
+   Way 1 → COMPILATION
+   Way 2 → INTERPRETATION
+
+3. COMPILATION (Used by C, C++, Java, etc.)
+   - Software used          : COMPILER
+   - How it works           : Takes the ENTIRE program at once → converts ALL lines into Machine code in ONE SHOT.
+   - After conversion       : Complete Machine code is ready → given to microprocessor.
+   - Speed                  : VERY FAST (because all instructions are ready before execution starts).
+
+4. INTERPRETATION (Used by JavaScript, Python, etc.)
+   - Software used          : INTERPRETER
+   - How it works           : Takes ONE instruction at a time → converts → executes → then takes next instruction.
+   - Process                : Convert → Execute → Convert next → Execute next → Repeat.
+   - Speed                  : SLOWER than compilation (microprocessor has to wait after every line).
+
+   IMPORTANT: JavaScript is an INTERPRETED language.
+
+5. Comparison Table
+
+   Feature                  | Compilation                     | Interpretation
+   -------------------------|---------------------------------|----------------------------------
+   Software                 | Compiler                        | Interpreter
+   Conversion               | Entire program at once          | One line at a time
+   Execution speed          | Faster                          | Slower
+   Examples                 | C, C++, Java, Go                | JavaScript, Python, Ruby
+
+6. Because JavaScript is Interpreted → We get 2 Modes of Execution
+
+   Mode 1: SCRIPT MODE (Most Common – 99% of real work)
+      - You write JavaScript code inside a file → filename.js
+      - Example: example.js
+      - You run the complete file using command:
+        node example.js
+      - Interpreter reads the whole file, converts + executes line by line.
+
+   Mode 2: INTERACTIVE MODE (REPL – Read Eval Print Loop)
+      - Just type: node  (and press Enter)
+      - You get a prompt >
+      - You type one line → press Enter → immediate output
+      - Then type next line → immediate output
+      - Great for quick testing and learning.
+
+7. Where Does JavaScript Actually Run?
+
+   Inside Browser
+      - Every browser has its own JavaScript Engine.
+      - Chrome → V8 Engine
+      - Firefox → SpiderMonkey
+      - You can open Console (Right-click → Inspect → Console) and type JS directly.
+
+   Outside Browser (on your computer)
+      - Someone took Chrome’s V8 Engine → removed browser parts → modified it.
+      - Result = Node.js
+      - Install Node.js → you can run .js files anywhere using VS Code, terminal, etc.
+      - Command: node filename.js
+
+8. Practical Example (VS Code + Node.js)
+
+   File: example.js
+   console.log("Hello");
+   console.log(2 + 2);
+   console.log(2 * 2);
+
+   Terminal command:
+   node example.js
+   → Output:
+   Hello
+   4
+   4
+
+   Interactive Mode:
+   > node
+   > console.log("Hello")
+   Hello
+   > 2 + 2
+   4
+   > 2 * 2
+   4
+
+9. Key Takeaways (Never Forget)
+
+   - JavaScript = High-Level + Interpreted language
+   - Uses Interpreter (not Compiler)
+   - Converts & executes one line at a time
+   - Can run in Browser (V8 inside Chrome) or Outside (Node.js)
+   - Script Mode  → Write full code in .js file → run with node command
+   - Interactive Mode → Type line by line → instant result (great for practice)
+
+   In this course & real jobs → 99% we use SCRIPT MODE (.js files + Node.js or Browser)
+
+Thank you! Namaste
+See you in Class 4

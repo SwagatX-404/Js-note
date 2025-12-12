@@ -1,0 +1,98 @@
+CLASS NOTES - DATA TYPES (Java / JavaScript / Any Language)
+Topic: What is a Data Type? – The Real Meaning (Most Important Class)
+
+1. Computer Hardware Recap
+   - 3 Main Components:
+        1. Hard Disk (permanent storage)
+        2. RAM (temporary storage during execution)
+        3. Processor (the brain – executes everything)
+   - When any software/program runs → all its data is stored in RAM
+   - Processor uses RAM as its memory
+
+2. What is RAM Really Made Of?
+   - 2 GB RAM = 2 × 10⁹ bytes = 200 Crore bytes
+   - 4 GB RAM = 400 Crore bytes
+   - 16 GB RAM = 1600 Crore bytes
+   → RAM is a huge collection of BYTES
+
+   - 1 Byte = 8 Bits
+   - 1 Bit = 2 Transistors (NPN + PNP)
+   - Transistors can store only voltage → High (5V) = 1   or   Low (0V) = 0
+
+   FINAL CONCLUSION:
+   RAM can store ONLY 0s and 1s (binary) → Nothing else!
+
+3. Real-World Data vs RAM – The Big Problem
+   Real World Data Examples:
+   - Age          → 23
+   - Height       → 5.11
+   - Name         → Rajkumar
+   - Placed?      → Yes / No
+   - Song         → Audio
+   - Movie        → Video
+   - Selfie       → Image
+
+   None of these are in 0s and 1s!
+
+   But RAM can store only 0s and 1s → MISMATCH!
+
+4. The Solution → DATA TYPE
+   Definition of Data Type (The Real Answer):
+   A DATA TYPE is a CONVERTER
+   → It takes real-world data (age, name, height, etc.)
+   → Converts it into 0s and 1s (binary)
+   → So that it can be stored in RAM
+
+   Without Data Types → No program can store real-world data!
+
+5. Types of Real-World Data (99.9% of data falls here)
+   1. Whole numbers        → Integer     (age, no. of students)
+   2. Decimal numbers      → Real/Float  (height, CGPA, weight)
+   3. Single character     → Character   (A, z, @)
+   4. Text / Name          → String      (Rajkumar, "Hello World")
+   5. Yes or No            → Boolean     (true / false)
+   6. Sound                → Audio
+   7. Moving picture       → Video
+   8. Still picture        → Image
+
+6. In Programming Languages
+   - For 1–5 → We have built-in DATA TYPES
+   - For 6–8 (Audio, Video, Image) → We use LIBRARIES (pre-written code by others)
+
+7. Java has 8 Primitive Data Types (We will learn all)
+   Integer types:
+   - byte   → 1 byte
+   - short  → 2 bytes
+   - int    → 4 bytes (most used)
+   - long   → 8 bytes
+
+   Real number types:
+   - float  → 4 bytes
+   - double → 8 bytes (most used)
+
+   Character type:
+   - char   → 2 bytes (for single character 'A', 'z', etc.)
+
+   Boolean type:
+   - boolean → true or false
+
+   Note: String is NOT a primitive data type in Java → It is an Object (we will learn later)
+
+8. JavaScript Data Types (for reference)
+   - number  → for both integer and decimal (8 bytes internally)
+   - string  → for text
+   - boolean → true / false
+   - undefined, null, bigint, symbol (advanced)
+   JavaScript is dynamically typed → no need to write data type
+
+9. Most Important Points to Remember Forever
+   - RAM = Crores of bytes → bytes = 8 bits → bits = transistors → only 0s and 1s
+   - Real-world data is NOT in 0s and 1s
+   - Data Type = Converter (Real world data → Binary)
+   - Without data types → impossible to store age, name, marks, etc. in computer
+   - Every programming language has data types (Java → 8 primitive, JS → flexible)
+
+   DATA TYPE = BRIDGE BETWEEN REAL WORLD AND COMPUTER
+
+Thank you! Namaste
+Next class: Integer Data Types in Detail

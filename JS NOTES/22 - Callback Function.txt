@@ -1,0 +1,117 @@
+JavaScript Callbacks - Complete Notes
+=====================================
+
+What is a Callback?
+-------------------
+A callback is a function that is passed as an argument to another function 
+and is executed inside that function (usually later).
+
+Why the name "callback"?
+→ You give a function now, but it will be "called back" later.
+
+Two Important Terms
+-------------------
+1. Higher-Order Function → The function that receives a callback
+   (also called Host Function)
+
+2. Callback Function     → The function that is passed as input
+
+This is possible only because:
+→ Functions in JavaScript are First-Class Citizens
+→ Functions are objects → can be passed around like numbers/strings
+
+Example 1: Calculator using Callbacks (Classic Example)
+--------------------------------------------------------
+function add(a, b)   { return a + b; }
+function sub(a, b)   { return a - b; }
+function mul(a, b)   { return a * b; }
+
+// Higher-Order Function
+function calc(a, b, callback) {
+    return callback(a, b);
+}
+
+console.log( calc(10, 20, add) );  // 30
+console.log( calc(10, 20, sub) );  // -10
+console.log( calc(10, 20, mul) );  // 200
+
+→ calc = Higher-Order Function
+→ add / sub / mul = Callback Functions
+
+Memory Visualization:
+add → reference variable → holds address of add function object
+When you do calc(10, 20, add):
+→ add (address) is copied into the parameter "callback"
+→ Inside calc, callback(a, b) → actually calls add(10, 20)
+
+Example 2: Calculate Area of Different Shapes
+---------------------------------------------
+function circleArea(radius) {
+    return Math.PI * radius * radius;
+}
+
+function squareArea(side) {
+    return side * side;
+}
+
+function equilateralTriangleArea(side) {
+    return (Math.sqrt(3) / 4) * side * side;
+}
+
+// Higher-Order Function
+function calculateArea(value, callback) {
+    console.log( callback(value) );
+}
+
+calculateArea(5, circleArea);             // ~78.54
+calculateArea(5, squareArea);             // 25
+calculateArea(5, equilateralTriangleArea); // ~10.825
+
+→ One single function (calculateArea) can calculate area of ANY shape
+→ Just pass the correct callback!
+
+Real-Life Uses of Callbacks (You will use daily!)
+-------------------------------------------------
+1. Array Methods
+   → forEach, map, filter, reduce → all take callbacks!
+
+2. Event Handling (DOM)
+   button.addEventListener("click", function() { ... }) → callback!
+
+3. Asynchronous JavaScript
+   → setTimeout(() => { ... }, 1000) → callback
+   → fetch().then(response => { ... }) → callback
+
+4. HTTP Requests (old way)
+   → XMLHttpRequest onload/onerror → callbacks
+
+5. Node.js (almost everything uses callbacks or promises)
+
+Callback Hell (Pyramid of Doom) – Warning!
+------------------------------------------
+setTimeout(() => {
+    console.log("Step 1");
+    setTimeout(() => {
+        console.log("Step 2");
+        setTimeout(() => {
+            console.log("Step 3");
+            // keeps going → bad readability
+        }, 1000);
+    }, 1000);
+}, 1000);
+
+→ This is why Promises and async/await were invented (later topics)
+
+Summary – Callback in 1 Line:
+"A function passed as an argument to another function to be called later."
+
+Interview One-Liner:
+"Callbacks are functions passed as arguments to other functions, enabling asynchronous and reusable code by allowing the higher-order function to invoke them at the appropriate time."
+
+You now fully understand callbacks!
+Next → Arrays + map, filter, forEach (you will see callbacks everywhere!)
+
+================================================================
+End of Callback Notes
+Save as: javascript-callbacks-notes.txt
+Master this → You are ready for real-world JavaScript!

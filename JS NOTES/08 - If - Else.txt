@@ -1,0 +1,136 @@
+CONTROL STRUCTURES IN JAVASCRIPT
+→ Programming is not always top-to-bottom (sequential)
+→ Real-world logic needs decisions & repetitions
+→ For that we need CONTROL STRUCTURES
+
+Two Types:
+1. Conditional Statements → Take decisions
+2. Loops → Repeat code
+
+Today’s Topic: CONDITIONAL STATEMENTS
+(Part 1 – if, if-else, if-else-if-else)
+
+1. if Statement
+Syntax:
+if (condition) {
+    // code executes ONLY if condition is true
+}
+
+Example 1: Night Club Entry
+let age = 20;
+
+if (age >= 18) {
+    console.log("Welcome to the club 🎉");
+}
+// Output: Welcome to the club
+
+If age = 15 → No output (condition false)
+
+Example 2: Free Shipping on Amazon
+let cartTotal = 12000;
+
+if (cartTotal >= 10000) {
+    console.log("You qualified for FREE shipping! 🚚");
+}
+// Output: You qualified for FREE shipping!
+
+2. if-else Statement
+Syntax:
+if (condition) {
+    // runs if true
+} else {
+    // runs if false
+}
+
+Example 1: Airport Lounge
+let isVIP = true;
+
+if (isVIP) {
+    console.log("Welcome to VIP Lounge ✨");
+} else {
+    console.log("Welcome to Regular Lounge");
+}
+// Output: Welcome to VIP Lounge
+
+If isVIP = false → Regular Lounge
+
+Example 2: Bank Withdrawal
+let balance = 1000;
+let withdrawAmount = 700;
+
+if (balance >= withdrawAmount) {
+    console.log("Transaction Successful ✅");
+} else {
+    console.log("Insufficient Balance ❌");
+}
+// Output: Transaction Successful
+
+If withdrawAmount = 1500 → Insufficient Balance
+
+3. if else if else (Multiple Conditions)
+Used when you have more than 2 possibilities
+
+Syntax:
+if (condition1) {
+    // block 1
+} else if (condition2) {
+    // block 2
+} else if (condition3) {
+    // block 3
+} else {
+    // default block
+}
+
+Real Example: Indian Railways Ticket Price
+let age = 14;
+
+if (age < 12) {
+    console.log("Child Ticket Price 👶");
+} else if (age >= 65) {
+    console.log("Senior Citizen Ticket Price 🧓");
+} else {
+    console.log("Adult Ticket Price 🧑");
+}
+// Output: Adult Ticket Price
+
+Test yourself:
+age = 8   → Child Ticket Price
+age = 70  → Senior Citizen Ticket Price
+age = 25  → Adult Ticket Price
+
+Important Flow Rules:
+→ Checks conditions from TOP to BOTTOM
+→ Only FIRST true block executes
+→ If none true → else runs (optional)
+→ else is always optional
+→ You can have many else if, but only one else
+
+Quick Interview Table
+
+Condition                     | Output
+-----------------------------|------------------
+age < 12                     | Child
+age >= 12 && age < 65        | Adult
+age >= 65                    | Senior Citizen
+
+Best Practice Tips:
+→ Always use curly braces { } even for one line
+→ Use strict equality === whenever possible
+→ Keep conditions simple and readable
+→ Indent properly – helps in debugging
+
+Upcoming in Part 2:
+→ Ternary Operator (?:)
+→ Switch Statement
+→ Nesting of if-else
+→ Common mistakes & interview questions
+
+Practice Questions (Do these now!):
+1. Check if a number is positive, negative or zero
+2. Find grade: marks >=90 → A, >=80 → B, >=70 → C, else F
+3. Check if a year is leap year
+4. Login system: correct username + password → Success, else Failed
+
+Save this note – Conditional statements are used in 90% of real code!
+See you in Part 2 for Ternary & Switch
+Happy Coding!

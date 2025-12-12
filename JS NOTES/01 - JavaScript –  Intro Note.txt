@@ -1,0 +1,189 @@
+📘 JavaScript Course – Class 1 Notes (Introduction to JavaScript)
+1. What is JavaScript?
+
+JavaScript is a programming language that runs inside the browser and is used to make web pages interactive and dynamic.
+
+HTML → structure
+
+CSS → styling
+
+JavaScript → interactivity + dynamic changes
+
+👉 Without learning JavaScript, web development is impossible.
+
+2. Prerequisite
+
+Before learning JavaScript, you MUST know:
+
+HTML
+
+CSS
+
+Without these, JavaScript will not make sense.
+
+3. What is a Web Application?
+
+A web application is a system where:
+
+The client (your computer + browser)
+
+Sends a request to a server
+
+Server sends response = HTML + CSS files
+
+Browser renders (displays) these files
+
+The browser’s primary job = Render HTML & CSS
+(“Rendering” means showing UI on the screen.)
+
+4. How Websites Work (Swiggy Example)
+Steps:
+
+You type swiggy.com in browser
+
+Browser (client) sends a request
+
+Server prepares HTML + CSS
+
+Server sends response
+
+Browser renders it on screen
+
+You see the UI
+
+You can inspect the HTML/CSS using Right Click → Inspect → Elements.
+
+5. The Problem With Only HTML & CSS → They Are Static
+
+HTML & CSS cannot change themselves.
+
+They are static, meaning they don’t update automatically.
+
+Example:
+
+On Swiggy:
+
+Clicking Add changes button to 1
+
+Clicking + increases number
+
+Clicking - decreases number
+
+This change is happening without refreshing the page and without sending a new request to the server.
+
+So who is changing the HTML & CSS?
+
+👉 JavaScript.
+
+6. Why Do We Need JavaScript? (Main Purpose)
+
+JavaScript can:
+
+✔ Access HTML
+✔ Access CSS
+✔ Dynamically modify them in the browser
+✔ Add interactivity
+✔ Make website fast and smooth
+
+Earlier:
+
+Every small action required a server request → slow websites
+Now:
+
+JavaScript changes things instantly inside the browser → fast UX
+
+This is why JavaScript was invented.
+
+7. Who Invented JavaScript?
+
+Invented by Brendan Eich
+
+While working at Netscape Navigator
+
+Created in the 1990s
+
+Old websites were slow, with no interaction — JS solved that.
+
+Today:
+
+JavaScript is everywhere → frontend, backend, mobile apps, desktop apps, IoT, AI, etc.
+
+8. How JavaScript Runs in a Browser
+
+Every browser has a JavaScript Engine.
+
+Browser	JavaScript Engine
+Chrome	V8
+Firefox	SpiderMonkey
+Safari	JavaScriptCore / Nitro
+
+These engines read JS code and execute it.
+
+👉 Only JavaScript is allowed to run natively inside the browser.
+
+9. Executing JavaScript in the Browser
+
+Easiest method: Browser Console
+
+Steps:
+
+Open browser
+
+Right-click → Inspect
+
+Go to Console tab
+
+Type JavaScript commands:
+
+Examples:
+
+console.log("Hello World");
+2 + 2;
+5 * 10;
+
+
+This shows how the browser executes JavaScript instantly.
+
+10. Summary of Class 1
+Why JavaScript?
+
+To make web pages dynamic & interactive
+
+To modify HTML/CSS without reloading
+
+To make websites fast
+
+What JavaScript Does
+
+Runs inside browser
+
+Uses browser’s JS engine
+
+Changes UI instantly (DOM manipulation)
+
+Prerequisites
+
+HTML + CSS
+
+Understanding of browser and server interaction
+
+⭐ Final Takeaway
+
+JavaScript = Language of the Web
+You cannot build modern web applications without it.
+
+Next classes will dive deeper into:
+
+Syntax
+
+Variables
+
+Functions
+
+Loops
+
+DOM
+
+Events
+
+And more

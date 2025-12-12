@@ -1,0 +1,122 @@
+CLASS NOTES – JavaScript Control Structures (Part 2)
+Topic: switch Statement + Ternary Operator (Most Important for Clean Code & Interviews)
+
+1. Why do we need switch statement?
+   - When you have to check ONE variable against MANY POSSIBLE VALUES
+   - Example: user roles → admin, editor, author, student/subscriber
+   - if...else if...else if... becomes very long and hard to read
+   - switch makes the code CLEAN, READABLE and PROFESSIONAL
+
+2. Real-Life Example: User Roles & Permissions
+   let userRole = "admin";
+
+   // Ugly way (if-else-if ladder)
+   if (userRole === "admin") {
+       console.log("Full access granted");
+   } else if (userRole === "editor") {
+       console.log("Editor access granted");
+   } else if (userRole === "author") {
+       console.log("Author access granted");
+   } else {
+       console.log("Student access granted");
+   }
+
+   // Beautiful way → switch statement
+   switch (userRole) {
+       case "admin":
+           console.log("Full access granted");
+           break;                    // ← VERY IMPORTANT
+       case "editor":
+           console.log("Editor access granted");
+           break;
+       case "author":
+           console.log("Author access granted");
+           break;
+       case "student":
+       case "subscriber":           // multiple values can share same block
+           console.log("Student access granted");
+           break;
+       default:                     // ← like final else (must be at the end)
+           console.log("Access denied");
+           break;                   // optional after default
+   }
+
+3. Most Important Rules of switch
+   - Comparison is STRICT (===) → value + type must match
+   - ALWAYS write break after every case (otherwise "fall-through" happens)
+   - You can group multiple cases (no code → falls to next case)
+   - default is compulsory in professional code
+
+4. Pro Example: Day of Week Message (Grouping Cases)
+   let day = 5;   // 0=Sunday, 1=Monday, ..., 6=Saturday
+
+   switch (day) {
+       case 0:        // Sunday
+       case 6:        // Saturday → grouped together
+           console.log("Happy Weekend 🎉");
+           break;
+
+       case 1:
+           console.log("Happy Monday ☕");
+           break;
+
+       case 2:        // Tuesday
+       case 3:        // Wednesday
+       case 4:        // Thursday → grouped as midweek
+           console.log("Happy Midweek 💪");
+           break;
+
+       case 5:
+           console.log("Thank God It's Friday! 🎊");
+           break;
+
+       default:
+           console.log("Invalid day");
+   }
+
+   Output for day = 0 → Happy Weekend
+   Output for day = 3 → Happy Midweek
+   Output for day = 5 → Thank God It's Friday!
+
+5. Ternary Operator (?:) – The One-Line if-else
+   Use when you have to assign a value based on a simple condition
+
+   // Normal if-else
+   let age = 20;
+   let message;
+   if (age >= 18) {
+       message = "Can vote";
+   } else {
+       message = "Cannot vote";
+   }
+   console.log(message);
+
+   // One-line magic → Ternary
+   let message = age >= 18 ? "Can vote" : "Cannot vote";
+   //     variable = condition ? valueIfTrue : valueIfFalse;
+
+   Real-life examples:
+   let status = marks >= 35 ? "Pass" : "Fail";
+   let theme  = isDarkMode ? "dark" : "light";
+   let price  = isMember ? 499 : 999;
+
+   You can even nest (but don’t overdo it):
+   let result = marks >= 90 ? "A+" : marks >= 70 ? "A" : "B";
+
+6. Summary Table
+
+   Construct           | Use Case                                    | Clean? | Must Remember
+   -------------------|---------------------------------------------|--------|---------------
+   if-else-if         | Any condition                               | No     | Works but messy with many cases
+   switch             | One variable == many fixed values           | Yes    | break + default compulsory
+   Ternary (?:)       | Assign value based on simple condition      | Yes    | Perfect replacement for simple if-else
+
+7. Golden Rules (Never Forget)
+   - Too many else-if → Convert to switch
+   - Simple assignment with condition → Use ternary
+   - Always break in switch (avoid fall-through bug)
+   - default is like final else → always write it
+   - Practice 20-30 switch & ternary questions → you will love clean code!
+
+Thank you! Namaste 🙏
+Next Class → Loops (for, while, do-while) – The Real Power of Programming!

@@ -1,0 +1,87 @@
+JavaScript - Multi-Dimensional Arrays (Complete Notes).txt
+
+==================================================================
+WHAT IS A DIMENSION IN ARRAYS? (NOT Geometry!)
+- Dimension = Number of pieces of information (indexes) required to access one single element
+- 1D → 1 index   → arr[i]
+- 2D → 2 indexes → arr[i][j]
+- 3D → 3 indexes → arr[i][j][k]
+
+==================================================================
+1D ARRAY EXAMPLE
+let students = ["Joe", "Jack", "Jim", "Jill", "Jiffy"];
+// To get a name → ask "which position?" → only 1 info → 1D array
+
+==================================================================
+2D ARRAY – ARRAY OF ARRAYS
+Example: Weather of 3 days (morning, afternoon, evening)
+
+let weather = [
+    [25, 30, 22],   // Day 1
+    [23, 31, 24],   // Day 2
+    [26, 30, 20]    // Day 3
+];
+
+// Access: weather[day][time]  → weather[1][1] = 31
+// To fetch one value → need DAY + TIME → 2 pieces → 2D array
+
+Looping through 2D array (Nested Loops)
+for (let i = 0; i < weather.length; i++) {              // i = days
+    for (let j = 0; j < weather[i].length; j++) {        // j = time of day
+        console.log(weather[i][j]);
+    }
+}
+→ Always use weather[i].length (handles jagged arrays)
+
+==================================================================
+3D ARRAY – ARRAY OF ARRAY OF ARRAYS
+Example: TAP Academy
+2 Centers → each center has 2 floors → each floor has 2 classrooms → store students count
+
+let arr = [
+    [ [50, 70], [65, 87] ],   // Center 0 → Floor 0 & Floor 1
+    [ [90, 45], [80, 30] ]    // Center 1 → Floor 0 & Floor 1
+];
+
+// Access: arr[center][floor][classroom]
+// arr[1][0][1] → 45 students
+
+Looping through 3D array
+for (let i = 0; i < arr.length; i++) {               // centers
+    for (let j = 0; j < arr[i].length; j++) {        // floors
+        for (let k = 0; k < arr[i][j].length; k++) { // classrooms
+            console.log(arr[i][j][k]);
+        }
+    }
+}
+
+==================================================================
+MEMORY REPRESENTATION (MOST IMPORTANT!)
+- When you nest arrays → inner arrays are NOT stored inside the outer array
+- Only the REFERENCE (memory address) of the inner array is stored
+Example:
+arr → [ ref2001, ref2002 ]
+        ↓          ↓
+    [25,30,22]  [23,31,24]
+
+→ This concept is crucial for Shallow Copy vs Deep Copy (later topic)
+
+==================================================================
+GENERAL RULE
+Dimension   Indexes needed   Nested loops needed   Structure
+1D          1                1 loop              [data]
+2D          2                2 loops             [[data]]
+3D          3                3 loops             [[[data]]]
+nD          n                n loops             n-level nesting
+
+==================================================================
+KEY TAKEAWAYS
+1. Multi-dimensional array = Nested arrays = Array of arrays
+2. Dimension = how many indexes you need to reach a value
+3. In memory → only references are stored, NOT the full inner arrays
+4. Always use currentLevel.length in loops (arr[i].length, arr[i][j].length etc.)
+5. There is NO limit → you can have 4D, 5D, 10D... n-dimensional arrays
+6. Practice by typing the code yourself!
+
+Keep Coding!
+==================================================================

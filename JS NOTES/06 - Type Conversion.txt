@@ -1,0 +1,105 @@
+1. Why do we need type conversion?
+- In 99% of coding & interviews, we only deal with:
+  → Number
+  → String
+  → Boolean
+- JavaScript allows us to convert one type into another
+  → Called Type Conversion or Type Casting
+
+2. Two ways:
+   • Implicit (JavaScript does automatically) → Type Coercion
+   • Explicit (we force it) → using built-in functions
+
+3. Explicit Conversion Functions
+
+   A) Convert TO STRING
+      String(value)
+      String(123)     → "123"
+      String(true)    → "true"
+      String(false)   → "false"
+
+   B) Convert TO NUMBER
+      Number(value)
+      Number("123")      → 123
+      Number("123abc")   → NaN
+      Number(true)       → 1
+      Number(false)      → 0
+      Number("")         → 0
+      Number("   ")      → 0
+
+   C) Convert TO INTEGER only → parseInt()
+      parseInt("123tap")      → 123
+      parseInt("tap123")      → NaN
+      parseInt("  123tap")    → 123
+      parseInt("12 34")       → 12   (stops at first invalid char)
+
+   D) Convert TO BOOLEAN
+      Boolean(value)
+
+4. TRUTHY & FALSY Values (MOST IMPORTANT)
+
+   FALSY values (6 only – remember these):
+   1. false
+   2. 0
+   3. ""          (empty string)
+   4. null
+   5. undefined
+   6. NaN
+
+   EVERYTHING ELSE IS TRUTHY
+
+   Examples of TRUTHY:
+   • " "           (string with space)
+   • "hello"
+   • "123"
+   • "false"       (string "false" is truthy!)
+   • 123, -5, 99
+   • true
+   • [ ]           (empty array → truthy)
+   • { }           (empty object → truthy)
+   • Infinity, -Infinity
+
+5. Boolean conversion rules
+   Number → Boolean
+      0          → false
+      Any non-zero → true (positive or negative)
+      NaN        → false
+
+   String → Boolean
+      Empty string ""          → false
+      Any non-empty string     → true (even "false", "0", "null")
+
+6. Key Point: Conversion creates a COPY
+   let a = 123;
+   String(a);          // does NOT change a
+   console.log(a);     // still 123 (number)
+
+   let b = String(a);  // correct way → store the result
+   console.log(b);     // "123" (string)
+
+7. Quick interview table
+
+   Value              → Boolean()     → Number()      → String()
+   ------------------------------------------------------------
+   false             → false        → 0            → "false"
+   true              → true         → 1            → "true"
+   0                 → false        → 0            → "0"
+   1                 → true         → 1            → "1"
+   ""                → false        → 0            → ""
+   " "               → true         → 0            → " "
+   "hello"           → true         → NaN          → "hello"
+   "123"             → true         → 123          → "123"
+   null              → false        → 0            → "null"
+   undefined         → false        → NaN          → "undefined"
+   NaN               → false        → NaN          → "NaN"
+
+8. parseInt() works left → right
+   • Takes digits until first non-numeric (except leading spaces)
+   • Stops at first invalid character
+
+   parseInt("123tap")     → 123
+   parseInt("  456  ")    → 456
+   parseInt("12 34")      → 12
+   parseInt("tap123")     → NaN
+
+Remember these 6 falsy values + how parseInt works → 90% interview questions on type conversion are covered!

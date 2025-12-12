@@ -1,0 +1,151 @@
+================================================================================
+SCOPE IN JAVASCRIPT – GLOBAL, FUNCTION & BLOCK SCOPE (MUST MASTER!)
+================================================================================
+
+Scope = The region in your code where a variable is accessible (visible & usable).
+
+JavaScript has 3 types of scope:
+1. Global Scope
+2. Function Scope
+3. Block Scope
+
+Understanding scope prevents 90% of "Why is my variable undefined?" bugs.
+
+================================================================================
+1. GLOBAL SCOPE
+
+Variables declared OUTSIDE any function or block → accessible EVERYWHERE in the file.
+
+let a = 100;               // Global variable
+
+function fun() {
+    console.log(a);        // 100 → Can access global variable
+}
+
+console.log(a);            // 100
+fun();                     // 100
+
+Memory View:
+- a lives in Global Execution Context (GEC)
+→ Any function can access it → Global Scope
+
+Both let & var behave the same in Global Scope.
+
+================================================================================
+2. FUNCTION SCOPE (Local Scope)
+
+Variables declared INSIDE a function → accessible ONLY inside that function.
+
+function fun() {
+    let a = 100;           // Function-scoped variable
+    console.log(a);        // 100 → OK
+}
+
+console.log(a);            // ReferenceError: a is not defined
+fun();                     // 100
+
+Key Point: Variable a is trapped inside fun() → cannot leak outside.
+
+Both let & var behave the same in Function Scope → cannot escape function.
+
+================================================================================
+3. BLOCK SCOPE { }
+
+A "block" = code inside { } of:
+- if / else
+- for / while / do-while
+- try / catch
+- standalone { } (rare)
+
+Variables declared with let or const inside a block → accessible ONLY inside that block.
+
+Example:
+let temp = 30;
+
+if (temp > 25) {
+    let coolingTemp = temp - 25;    // Block-scoped
+    console.log("Cool by", coolingTemp); // 5 → OK
+}
+
+console.log(coolingTemp); // ReferenceError → Outside block → not accessible
+
+Same for for loop:
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+console.log(i); // ReferenceError → i is block-scoped to for loop
+
+let & const are BLOCK-SCOPED
+var is NOT block-ignorant (dangerous!)
+
+================================================================================
+THE BIG DIFFERENCE: var vs let IN BLOCK SCOPE
+
+let / const → RESPECT block scope → do NOT leak out
+var        → IGNORES block scope → leaks to nearest function or global scope
+
+Example 1 – var leaks out of block:
+if (true) {
+    var x = 999;
+}
+console.log(x); // 999 → var leaked to global scope!
+
+Example 2 – var inside for loop leaks to function scope:
+function printTill(n) {
+    for (var i = 1; i <= n; i++) {
+        console.log(i);
+    }
+    console.log("Final i =", i); // 6 → i leaked to function scope!
+}
+printTill(5);
+
+Example 3 – let stays inside block:
+for (let i = 1; i <= 5; i++) { ... }
+console.log(i); // ReferenceError → i not visible
+
+Hoisting Behavior in Blocks:
+let → Hoisted but stays inside block (TDZ active)
+var → Hoisted to nearest FUNCTION or GLOBAL scope → leaks!
+
+That's why var is dangerous and should be avoided.
+
+================================================================================
+SUMMARY TABLE – let vs var (Scope + Hoisting)
+
+Feature                     | let / const                        | var
+----------------------------|-------------------------------------|--------------------------
+Global Scope                | Accessible everywhere               | Same
+Function Scope              | Trapped inside function             | Same
+Block Scope                 | Trapped inside { }                  | Leaks out
+Hoisting                    | Hoisted + TDZ (error if accessed early) | Hoisted + undefined
+Can access before declaration? | No (TDZ)                           | Yes (undefined)
+Re-declaration in same scope? | Not allowed                        | Allowed (bug source)
+Best Practice               | ALWAYS USE THIS                     | NEVER USE (legacy)
+
+Rule of Thumb:
+Use let/const → Modern, safe, predictable
+Avoid var completely → It breaks block scope
+
+================================================================================
+INTERVIEW QUESTIONS YOU CAN NOW ANSWER
+
+Q: What will be the output?
+```js
+{
+    let a = 10;
+    var b = 20;
+}
+console.log(b); // ?   20 (var leaks)
+console.log(a); // ?   ReferenceError (let doesn't leak)
+
+Q: Why do we get error with let i outside for loop but not with var?
+→ let is block-scoped, var is function/global-scoped.
+
+Q: Can a variable declared with var inside if block be accessed outside?
+→ Yes → var ignores blocks → leaks to outer function/global.
+
+Q: Best way to create block-scoped variables?
+→ Use let or const → never var.
+
+Q: What is scope chain?
+→ When JS looks for a variable → checks current scope → parent scope → up to global.
