@@ -1,0 +1,315 @@
+# ADVANCED JAVASCRIPT – COMPLETE SYLLABUS (TXT NOTES)
+
+This document covers Advanced JavaScript topics from fundamentals to real-world usage.
+Suitable for MCA students, freshers, interviews, and full‑stack development.
+
+---
+
+1. JAVASCRIPT INTERNALS
+
+---
+
+• JavaScript Engine (V8, SpiderMonkey)
+• Execution Context
+
+* Global Execution Context
+* Function Execution Context
+  • Call Stack
+  • Memory Heap
+  • Hoisting
+* var hoisting
+* let/const and Temporal Dead Zone (TDZ)
+  • Scope
+* Global Scope
+* Function Scope
+* Block Scope
+  • Lexical Environment
+  • Scope Chain
+
+---
+
+2. ADVANCED FUNCTIONS
+
+---
+
+• Function Declaration vs Function Expression
+• First-Class Functions
+• Higher-Order Functions
+• Callback Functions
+• Pure vs Impure Functions
+• IIFE (Immediately Invoked Function Expression)
+• Function Currying
+• Partial Application
+• Memoization
+
+---
+
+3. CLOSURES
+
+---
+
+• Definition of Closure
+• How closures work internally
+• Data Encapsulation using Closures
+• Private Variables
+• Closures in Loops
+• Advantages and Disadvantages
+• Memory considerations with closures
+
+---
+
+4. THIS KEYWORD & FUNCTION BINDING
+
+---
+
+• this keyword behavior
+
+* Global scope
+* Inside function
+* Inside object method
+* Arrow function behavior
+  • call() method
+  • apply() method
+  • bind() method
+  • Explicit vs Implicit binding
+  • Hard binding vs Soft binding
+
+---
+
+5. PROTOTYPES & INHERITANCE
+
+---
+
+• Prototype object
+• Prototype chain
+• **proto** vs prototype
+• Constructor functions
+• Prototypal inheritance
+• ES6 Classes
+• extends and super keywords
+
+---
+
+6. ASYNCHRONOUS JAVASCRIPT
+
+---
+
+• Synchronous vs Asynchronous execution
+• JavaScript Event Loop
+• Web APIs
+• Callback Queue
+• Microtask Queue
+• Promises
+
+* Promise states
+* then(), catch(), finally()
+  • async / await
+  • Error handling in async code
+
+---
+
+7. ADVANCED PROMISES
+
+---
+
+• Promise chaining
+• Promise.all()
+• Promise.allSettled()
+• Promise.race()
+• Promise.any()
+• Basic idea of custom Promise implementation
+
+---
+
+8. ES6+ MODERN JAVASCRIPT FEATURES
+
+---
+
+• let and const
+• Arrow functions
+• Template literals
+• Destructuring
+
+* Array destructuring
+* Object destructuring
+  • Spread operator
+  • Rest operator
+  • Default parameters
+  • Enhanced object literals
+  • Optional chaining (?.)
+  • Nullish coalescing (??)
+  • JavaScript modules (import/export)
+
+---
+
+9. OBJECTS (DEEP DIVE)
+
+---
+
+• Object creation methods
+• Object.freeze()
+• Object.seal()
+• Object.preventExtensions()
+• Object.keys()
+• Object.values()
+• Object.entries()
+• Shallow copy vs Deep copy
+• JSON stringify and parse
+• Structured cloning concept
+
+---
+
+10. ARRAYS & ADVANCED METHODS
+
+---
+
+• map()
+• filter()
+• reduce()
+• forEach()
+• some()
+• every()
+• find()
+• findIndex()
+• sort()
+• flat()
+• flatMap()
+• Writing custom polyfills for array methods
+
+---
+
+11. ERROR HANDLING
+
+---
+
+• try...catch block
+• finally block
+• Custom error creation
+• Error object
+• Synchronous vs Asynchronous errors
+
+---
+
+12. EVENT HANDLING & DOM (ADVANCED)
+
+---
+
+• Event bubbling
+• Event capturing
+• Event delegation
+• preventDefault()
+• stopPropagation()
+• Custom events
+
+---
+
+13. BROWSER STORAGE
+
+---
+
+• Cookies
+• localStorage
+• sessionStorage
+• IndexedDB (basic idea)
+• Security concerns with storage
+
+---
+
+14. PERFORMANCE OPTIMIZATION
+
+---
+
+• Debouncing
+• Throttling
+• Lazy loading
+• Code splitting
+• Memory leaks
+• Garbage collection (basic understanding)
+
+---
+
+15. JAVASCRIPT DESIGN PATTERNS
+
+---
+
+• Module pattern
+• Singleton pattern
+• Factory pattern
+• Observer pattern
+• MVC / MVVM basics
+
+---
+
+16. FUNCTIONAL PROGRAMMING CONCEPTS
+
+---
+
+• Immutability
+• Pure functions
+• Function composition
+• Pipe concept
+• Recursion
+
+---
+
+17. POLYFILLS & TRANSPILERS
+
+---
+
+• What is a polyfill?
+• Why polyfills are needed
+• Babel overview
+• Browser compatibility issues
+
+---
+
+18. JAVASCRIPT SECURITY
+
+---
+
+• XSS (Cross-Site Scripting)
+• CSRF (basic concept)
+• Secure coding practices
+• CORS basics
+
+---
+
+19. TESTING IN JAVASCRIPT
+
+---
+
+• Unit testing concepts
+• Jest basics
+• Writing test cases
+• Mocking functions
+
+---
+
+20. REAL-WORLD PROJECT IDEAS
+
+---
+
+• Form validation system
+• Debounced search input
+• Infinite scrolling
+• Advanced Todo application
+• Authentication flow (Frontend)
+• API integration using Fetch / Axios
+• Role-based UI access control
+
+---
+
+## INTERVIEW FOCUS AREAS
+
+• Closures with hoisting questions
+• Event loop explanation with diagram
+• var vs let vs const
+• Arrow functions vs normal functions
+• == vs ===
+• Promise vs async/await
+• Shallow copy vs deep copy
+• this keyword tricky scenarios
+
+---
+
+## END OF ADVANCED JAVASCRIPT NOTES
